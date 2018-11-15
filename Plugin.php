@@ -4,8 +4,8 @@
  *
  * @package KMarkdownPlus
  * @author 桐谷咸鱼
- * @version 1.0.0
- * @link https://www.kiripa.com
+ * @version 1.0.1
+ * @link https://www.kiripa.com/article/2018111432
  */
 
 class KMarkdownPlus_Plugin implements Typecho_Plugin_Interface
@@ -18,8 +18,8 @@ class KMarkdownPlus_Plugin implements Typecho_Plugin_Interface
      */
     public static function activate()
     {
-        Typecho_Plugin::factory('Widget_Abstract_Contents')->markdown = array('KMarkdownPlus_Plugin', 'markdown');
-        Typecho_Plugin::factory('Widget_Abstract_Comments')->markdown = array('KMarkdownPlus_Plugin', 'markdown');
+        Typecho_Plugin::factory('Widget_Abstract_Contents')->markdown = array('KMarkdownPlus_Plugin', 'contentsMarkdown');
+        Typecho_Plugin::factory('Widget_Abstract_Comments')->markdown = array('KMarkdownPlus_Plugin', 'commentsMarkdown');
 
         /**
          * 以下为待开发功能
@@ -45,26 +45,47 @@ class KMarkdownPlus_Plugin implements Typecho_Plugin_Interface
     {}
     public static function personalConfig(Typecho_Widget_Helper_Form $form)
     {}
-    public static function markdown($text)
+
+    public static function contentsMarkdown($text) {
+
+        $text = Markdown::convert($text);
+        $text = KMarkdownPlus_Plugin::markdownSteam($text);
+        $text = KMarkdownPlus_Plugin::markdownBili($text);
+        return $text;
+    
+    }
+
+    public static function commentsMarkdown($text) {
+
+        $text = Markdown::convert($text);
+        $text = KMarkdownPlus_Plugin::markdownSteam($text);
+        return $text;
+    
+    }
+
+    public static function markdownSteam($text)
     {
 		
 		
 		// https://store.steampowered.com/app/
         // https://store.steampowered.com/api/appdetails/?appids=637650
         
-		$text = Markdown::convert($text);
 		preg_match_all("/\[steam +?id=([0-9]*?) *?\/\]/", $text, $result, PREG_SET_ORDER);
 		foreach  ($result as $res) {
-			$text = str_replace($res[0], "<iframe src=\"https://store.steampowered.com/widget/".$res[1]."/\" style=\"border:none;height:190px;width:100%;max-width:646px;\"></iframe>", $text);
+			$text = str_replace($res[0], "<iframe src=\"https://store.steampowered.com/widget/".$res[1]."/\" style=\"border:none;height:190px;width:100%;\"></iframe>", $text);
         }
-        
-		preg_match_all("/\[bili +?id=([0-9]*?) *?\/\]/", $text, $result, PREG_SET_ORDER);
+        return $text;
+    }
+
+    public static function markdownBili($text) {
+        preg_match_all("/\[bili +?id=([0-9]*?) *?\/\]/", $text, $result, PREG_SET_ORDER);
 		foreach  ($result as $res) {
-			$text = str_replace($res[0], "<iframe src='//player.bilibili.com/player.html?aid=".$res[1]."' class='bili-iframe-kmp' style=\"width:100%;\" scrolling=\"no\" border=\"0\" frameborder=\"no\" framespacing=\"0\" allowfullscreen=\"true\"> </iframe>", $text);
+            $iframe = "<div style='width:100%;height:0;padding-bottom:75%;position: relative;'>";
+            $iframe = $iframe . "<iframe src='//player.bilibili.com/player.html?aid=".$res[1]."' class='bili-iframe-kmp' style=\"width:100%;height:100%;position: absolute;top:0;left:0;\" scrolling=\"no\" border=\"0\" frameborder=\"no\" framespacing=\"0\" allowfullscreen=\"true\"> </iframe>";
+            $iframe = $iframe . "</div>";
+            $text = str_replace($res[0], $iframe, $text);
         }
         
-        $text = $text . '<script>var biliIframeResize = function(){var iframes = $(".bili-iframe-kmp");for(var i = 0;i < iframes.length;i++){var el = iframes[i];var bw = $(el).width();var coe = 16 / 9;$(el).height(bw / coe);}};$(window).resize(biliIframeResize);biliIframeResize();</script>';
-		
         return $text;
     }
 	
