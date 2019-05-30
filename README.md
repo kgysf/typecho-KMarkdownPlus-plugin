@@ -7,7 +7,6 @@
 
 这是一个Typecho Markdown 解析增强的插件，目前仅增加了两种语法支持，分别是 Steam游戏引用 以及 BiliBili视频引用。  
 评论中支持Steam引用，但是不支持BiliBili视频引用。  
-GitHub地址：https://github.com/kgysf/typecho-KMarkdownPlus-plugin/tree/master  
 
 ## 安装 ##
 你可以直接在typecho的`usr/plugins`文件夹中clone 项目的master分支，然后将文件夹重命名为`KMarkdownPlus`，如下：  
