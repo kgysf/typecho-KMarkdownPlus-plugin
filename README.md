@@ -8,6 +8,17 @@
 这是一个Typecho Markdown 解析增强的插件，目前仅增加了两种语法支持，分别是 Steam游戏引用 以及 BiliBili视频引用。  
 评论中支持Steam引用，但是不支持BiliBili视频引用。  
 
+## 目录 ##
+ - [安装](#安装)
+ - [使用方法 && 效果预览](#使用方法&&效果预览)
+ - [设置](#设置)
+   - [是否启用steam引用代理加速](#是否启用steam引用代理加速)
+   - [是否开启评论区解析](#是否开启评论区解析)
+   - [其否开启请求来源判断](#其否开启请求来源判断)
+ - [Q & A](#q&a)
+   - [为什么评论区引用steam不是撑满整行](#为什么评论区引用steam不是撑满整行)
+ - [TODO](#todo)
+
 ## 安装 ##
 你可以直接在typecho的`usr/plugins`文件夹中clone 项目的master分支，然后将文件夹重命名为`KMarkdownPlus`，如下：  
 ```bash
@@ -31,11 +42,13 @@ mv typecho-KMarkdownPlus-plugin-1.1.0 KMarkdownPlus
 
 ## 使用方法 && 效果预览 ##
 
-> Steam游戏引用，语法：`[steam id=steam游戏id /]`  
+> Steam游戏引用，语法：`[steam id=steam游戏id /]`    
+
 ![Steam预览图][2]
 
 
-> BiliBili视频引用，语法：`[bili id=B站视频AV号 /]`  
+> BiliBili视频引用，语法：`[bili id=B站视频AV号 /]`    
+
 ![Steam预览图][3]
 
 ## 设置 ##
@@ -80,7 +93,7 @@ mv typecho-KMarkdownPlus-plugin-1.1.0 KMarkdownPlus
 
 ## TODO ##
 
- - 番剧信息引用
+ - [ ] 番剧信息引用 ~~(有生之年？)~~
 
 
  [1]: https://github.com/kgysf/typecho-KMarkdownPlus-plugin/releases
