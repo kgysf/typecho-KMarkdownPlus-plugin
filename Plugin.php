@@ -4,7 +4,7 @@
  *
  * @package KMarkdownPlus
  * @author 桐谷咸鱼
- * @version 1.1.0
+ * @version 1.2.0
  * @link https://www.kiripa.com/article/2018111432
  */
 
