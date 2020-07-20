@@ -2,7 +2,7 @@
 
 
 @package KMarkdownPlus  
-@version 1.1.0  
+@version 1.2.0  
 
 这是一个Typecho Markdown 解析增强的插件，目前仅增加了两种语法支持，分别是 Steam游戏引用 以及 BiliBili视频引用。  
 评论中支持Steam引用，但是不支持BiliBili视频引用。  
