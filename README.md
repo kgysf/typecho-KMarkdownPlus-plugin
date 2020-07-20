@@ -46,9 +46,9 @@ mv typecho-KMarkdownPlus-plugin-1.1.0 KMarkdownPlus
 ![Steam预览图][2]
 
 
-> BiliBili视频引用，语法：`[bili id=B站视频AV号 /]`    
+> 语法：`[bili id=B站视频AV或BV号 /]`，如果是bv号一定要附带BV开头   
 
-![Steam预览图][3]
+![Bili预览图][3]
 
 ## 设置 ##
 
@@ -92,7 +92,7 @@ mv typecho-KMarkdownPlus-plugin-1.1.0 KMarkdownPlus
 
 ## TODO ##
 
- - [ ] 番剧信息引用 ~~(有生之年？)~~
+ - [ ] 番剧信息引用 ~~(咕咕咕)~~
 
 
  [1]: https://github.com/kgysf/typecho-KMarkdownPlus-plugin/releases
