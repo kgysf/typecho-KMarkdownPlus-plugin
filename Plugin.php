@@ -96,9 +96,9 @@ class KMarkdownPlus_Plugin implements Typecho_Plugin_Interface
     }
 
     public static function markdownBili($text) {
-        preg_match_all("/\[bili +?id=([0-9]*?) *?\/\]/", $text, $result, PREG_SET_ORDER);
-		foreach  ($result as $res) {
-            $url = "//player.bilibili.com/player.html?aid=".$res[1];
+        preg_match_all("/\[bili +?id=([0-9a-zA-Z]*?) *?\/\]/", $text, $result, PREG_SET_ORDER);
+	foreach  ($result as $res) {
+            $url = "//player.bilibili.com/player.html?".(strpos($res[1], "BV") === 0 ? 'bvid' : 'aid')."=".$res[1];
             $iframe = "<div style='width:100%;height:0;padding-bottom:75%;position: relative;'>";
             $iframe = $iframe . "<iframe src='" . $url . "' class='bili-iframe-kmp' style=\"width:100%;height:100%;position: absolute;top:0;left:0;\" scrolling=\"no\" border=\"0\" frameborder=\"no\" framespacing=\"0\" allowfullscreen=\"true\"> </iframe>";
             $iframe = $iframe . "</div>";
